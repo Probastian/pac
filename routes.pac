@@ -6,7 +6,7 @@ function FindProxyForURL(url, host) {
     // Check if the host ends with .bmwgroup.net
     if (shExpMatch(host, "*.bmwgroup.net")) {
         // Use SOCKS proxy on localhost:9898
-        return "SOCKS localhost:9898; DIRECT";
+        return "SOCKS5 localhost:9898; DIRECT";
     }
 
     // For all other URLs, use direct connection
