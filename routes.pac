@@ -1,6 +1,6 @@
 const rules = {
 	// BMW-Proxy Rules
-    "SOCKS5H localhost:9898": {
+    "SOCKS localhost:9898": {
         whitelist: [
             { pattern: "*.cloud.bmw", matchType: "host", isRegex: false },
             { pattern: "*.bmwgroup.net", matchType: "host", isRegex: false },
