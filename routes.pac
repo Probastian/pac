@@ -1,32 +1,14 @@
 function FindProxyForURL(url, host) {
-    // Define the SOCKS proxy
-    var proxy = "SOCKS localhost:9898";
+    // Log host to see if PAC file is correctly matching the domain
+    // Uncomment the next line to enable logging (useful for debugging in some browsers)
+    // console.log("Checking host: " + host);
 
-    // Define whitelist and blacklist patterns
-    var whitelist = [
-        "*.cloud.bmw",
-        "*.bmwgroup.net",
-        "*.muc"
-    ];
-
-    var blacklist = [
-        "strongauth.bmwgroup.net"
-    ];
-
-    // Check if host matches any pattern in the blacklist
-    for (var i = 0; i < blacklist.length; i++) {
-        if (shExpMatch(host, blacklist[i])) {
-            return "DIRECT"; // Skip proxy if the host is in the blacklist
-        }
+    // Check if the host ends with .bmwgroup.net
+    if (shExpMatch(host, "*.bmwgroup.net")) {
+        // Use SOCKS proxy on localhost:9898
+        return "SOCKS5 localhost:9898; DIRECT";
     }
 
-    // Check if host matches any pattern in the whitelist
-    for (var i = 0; i < whitelist.length; i++) {
-        if (shExpMatch(host, whitelist[i])) {
-            return proxy; // Use proxy if the host is in the whitelist
-        }
-    }
-
-    // Default to direct connection if no matches are found
+    // For all other URLs, use direct connection
     return "DIRECT";
 }
