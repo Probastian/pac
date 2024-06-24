@@ -1,4 +1,4 @@
-const rules = {
+var rules = {
 	// BMW-Proxy Rules
     "SOCKS localhost:9898": {
         whitelist: [
